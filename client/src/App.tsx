@@ -117,7 +117,7 @@ function App() {
           </Row>
           <Row>
             <Col>
-              <p style={{ fontSize: "80px" }}>Count: {counter}</p>
+              <p style={{ fontSize: "80px", textAlign: "center" }}>Count: {counter}</p>
             </Col>
           </Row>
         </Spin >
