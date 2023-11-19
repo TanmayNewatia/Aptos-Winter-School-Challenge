@@ -14,6 +14,7 @@ function App() {
   const { account, signAndSubmitTransaction } = useWallet();
   const [counter, setCounter] = useState<number>(0);
   const [transactionInProgress, setTransactionInProgress] = useState<boolean>(false);
+  const [reload, setReload] = useState<number>(0);
 
   const fetch = async () => {
     if (!account) return;
@@ -24,6 +25,9 @@ function App() {
       );
       let data = JSON.parse((todoListResource?.data as any).count);
       setCounter(data);
+      if(reload){
+        window.location.reload();
+      }
     }
     catch (e: any) {
       initialize();
@@ -80,7 +84,7 @@ function App() {
     fetch();
   }, [account?.address]);
 
-  const timer = () => { setInterval(() => { fetch() }, 5000); }
+  const timer = () => { setInterval(() => { setReload(1); fetch() }, 5000); }
 
   //Runs every 5 second
   useEffect(() => {
